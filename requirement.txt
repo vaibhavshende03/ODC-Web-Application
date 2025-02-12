@@ -1,0 +1,5 @@
+python==3.8.10
+tensorflow==2.13.0
+tensorflow-hub==0.16.1
+opencv-python
+django

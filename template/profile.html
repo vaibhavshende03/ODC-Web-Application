@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Raleway:ital,wght@1,100;1,200;1,300;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Profile</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        background-color: #080710;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+        font-size: 20px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        max-width: 100%;
+      }
+      .row {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      section {
+        padding: 60px;
+      }
+      a:link,
+      a:visited,
+      a:hover,
+      a:active {
+        text-decoration: none;
+      }
+      .back {
+        margin: 80px auto;
+        height: auto;
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.137);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.61);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        padding: 30px 35px;
+        align-content: center;
+        justify-content: center;
+      }
+      .top-heading h1 {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 300;
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+        grid-template-rows: 27px 0;
+        grid-gap: 20px;
+        align-items: center;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-weight: 300;
+        color: #fff;
+      }
+      .top-heading h1:after,
+      .top-heading h1:before {
+        content: " ";
+        display: block;
+        border-bottom: 1px solid #8a8888;
+        border-top: 1px solid #adadad;
+        height: 1px;
+        background-color: #f8f8f8;
+      }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      form label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #ffffff;
+      }
+      form input,
+      form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+      form button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background: #1d72b8;
+        color: #ffffff;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      form button:hover {
+        background: #135a96;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back">
+      <header>
+        <div class="row">
+          <div class="top-heading">
+            <h1>Profile</h1>
+          </div>
+        </div>
+      </header>
+      <section>
+        <div class="row">
+          <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+              <legend>User Information</legend>
+              {{ user_form.as_p }}
+            </fieldset>
+            <fieldset>
+              <legend>Profile Settings</legend>
+              {{ profile_form.as_p }}
+            </fieldset>
+            <button type="submit">Save Changes</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

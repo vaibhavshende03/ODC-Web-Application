@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Raleway:ital,wght@1,100;1,200;1,300;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Object Detection</title>
+    <style>
+            /* Your existing CSS styles */
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            html,
+            body {
+              background-color: #080710;
+              text-rendering: optimizeLegibility;
+              overflow-x: hidden;
+              font-size: 20px;
+              font-family: "Poppins", sans-serif;
+              color: #fff;
+              max-width: 100%;
+            }
+            .row {
+              max-width: 100%;
+              margin: 0 auto;
+            }
+            section {
+              padding: 20px;
+            }
+            a:link,
+            a:visited,
+            a:hover,
+            a:active {
+              text-decoration: none;
+            }
+            .back {
+              margin: 80px auto;
+              height: auto;
+              width: 90%;
+              background-color: rgba(255, 255, 255, 0.137);
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              border-radius: 10px;
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.61);
+              box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+              padding: 30px 35px;
+              align-content: center;
+              justify-content: center;
+            }
+            .top-heading h1 {
+              text-align: center;
+              font-size: 30px;
+              font-weight: 300;
+              color: #ffffff;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              display: grid;
+              grid-template-columns: 1fr max-content 1fr;
+              grid-template-rows: 27px 0;
+              grid-gap: 20px;
+              align-items: center;
+              margin: 0 auto;
+            }
+
+            @media (max-width: 768px) {
+              .top-heading h1 {
+                font-size: 22px;
+                grid-gap: 10px;
+              }
+            }
+
+            @media (max-width: 481px) {
+              .top-heading h1 {
+                font-size: 16px;
+                grid-gap: 5px;
+              }
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              font-weight: 300;
+              color: #fff;
+            }
+            .top-heading h1:after,
+            .top-heading h1:before {
+              content: " ";
+              display: block;
+              border-bottom: 1px solid #8a8888;
+              border-top: 1px solid #adadad;
+              height: 1px;
+              background-color: #f8f8f8;
+            }
+            .grid-container {
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+              gap: 20px;
+              justify-content: center;
+              align-content: center;
+              text-align: center;
+              border-radius: 10px;
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.61);
+              box-shadow: 0 0 40px rgba(39, 223, 255, 0.466);
+              padding: 20px;
+              width: 100%;
+              height: auto;
+            }
+            .grid-container img {
+              width: 100%;
+              height: 100%;
+              object-fit: fill;
+              border-radius: 10px;
+            }
+            .grid-container div {
+              padding: 20px;
+              border-radius: 10px;
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.61);
+              box-shadow: 0 0 40px rgba(53, 52, 52, 0.6);
+              width: 100%;
+              height: auto;
+            }
+
+      @media (min-width: 481px) {
+              .grid-container {
+                grid-template-columns: 1fr;
+              }
+            }
+            @media (min-width: 768px) {
+              .grid-container {
+                grid-template-columns: 1fr;
+              }
+            }
+
+            @media (min-width: 1024px) {
+              .grid-container {
+                grid-template-columns: 2fr 1fr;
+              }
+            }
+            .object-list {
+              text-align: left;
+              margin-top: 0;
+            }
+            .object-list h3 {
+              margin-bottom: 10px;
+              letter-spacing: 0px;
+            }
+            .object-list ul {
+              list-style-type: none;
+            }
+            .object-list li {
+              margin: 5px 0;
+            }
+            .nav-buttons {
+              text-align: center;
+              margin-top: 20px;
+            }
+            .nav-buttons a {
+              padding: 10px 20px;
+              margin: 5px;
+              border: none;
+              border-radius: 5px;
+              background: #1d72b8;
+              color: #ffffff;
+              font-size: 18px;
+              cursor: pointer;
+              text-decoration: none;
+            }
+            .nav-buttons a:hover {
+              background: #135a96;
+            }
+
+            .navbar {
+              display: flex;
+              justify-content: center;
+              padding: 10px;
+              margin: 5px;
+              flex-wrap: wrap;
+            }
+            .nav-buttons a {
+              flex: 1 1 auto;
+              margin: 5px;
+              margin-bottom:8px
+              text-align: center;
+            }
+    </style>
+  </head>
+  <body>
+    <div class="back">
+      <header>
+        <div class="row">
+          <div class="top-heading">
+            <h1>Object Detection And Its Count</h1>
+          </div>
+        </div>
+      </header>
+      <section>
+        <nav class="navbar">
+          <div class="nav-buttons">
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+
+            <a href="{% url 'logout' %}">Logout</a>
+          </div>
+        </nav>
+        <div class="row">
+          <div class="grid-container">
+            <div class="row">
+              <img src="{% url 'video_feed' %}" alt="Video Feed" />
+            </div>
+            <div class="row object-list">
+              <h3>Detected Objects:</h3>
+              <ul id="object-list">
+                <!-- Object counts will be updated here by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      function fetchDetectedObjects() {
+        fetch("{% url 'get_detected_objects' %}")
+          .then((response) => response.json())
+          .then((data) => {
+            const objectList = document.getElementById("object-list");
+            objectList.innerHTML = ""; // Clear existing list
+            for (const [object, count] of Object.entries(data)) {
+              const listItem = document.createElement("li");
+              listItem.textContent = `${object}: ${count}`;
+              objectList.appendChild(listItem);
+            }
+          })
+          .catch((error) =>
+            console.error("Error fetching detected objects:", error)
+          );
+      }
+
+      // Fetch detected objects every 2 seconds
+      setInterval(fetchDetectedObjects, 2000);
+
+      // Stop the camera when leaving the page
+      window.addEventListener("beforeunload", function () {
+        fetch("{% url 'leave_index_page' %}");
+      });
+    </script>
+
+    <script
+      src="https://kit.fontawesome.com/b7b9bc1096.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
